@@ -11,8 +11,8 @@ CORS(app)
 # creating an API object
 api = Api(app)
 
-#prediction api call
-model = joblib.load(open('m.pkl','rb'))
+#prediction api call 'F:/v2 machine learning/model 1/deploy api machine learning/
+model = joblib.load(open('Farrag Model V2.pkl','rb'))
 
 
 @app.route('/')
@@ -22,13 +22,11 @@ def home():
 @app.route("/predict",methods=["post"])
 def predict():
     rates = request.json
+    
     quary_df = pd.DataFrame(rates)
     predection = model.predict(quary_df)
     return jsonify(list(predection))
     
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
